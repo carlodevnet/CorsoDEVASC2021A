@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <response>
+      <element>
+         <attributeInfo />
+         <id>d4b33d28-04dd-4733-a6de-8877ec26c196</id>
+         <networkDeviceId>e5f93514-3ae5-4109-8b52-b9fa876e1eae</networkDeviceId>
+         <tag>campus</tag>
+      </element>
+      <element>
+         <attributeInfo />
+         <id>d4b33d28-04dd-4733-a6de-8877ec26c196</id>
+         <networkDeviceId>da733ffb-e34b-4733-bd85-b615fb7e61f3</networkDeviceId>
+         <tag>campus</tag>
+      </element>
+      <element>
+         <attributeInfo />
+         <id>d4b33d28-04dd-4733-a6de-8877ec26c196</id>
+         <networkDeviceId>f8c3fc68-cd26-4576-bcec-51f9b578f71e</networkDeviceId>
+         <tag>campus</tag>
+      </element>
+   </response>
+   <version>0.0</version>
+</root>
