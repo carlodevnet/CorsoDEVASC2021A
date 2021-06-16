@@ -1,0 +1,10 @@
+[
+    {
+        "name": "devnet_ssh_telnet",
+        "discoveryType": "Range",
+        "ipAddressList": "10.10.20.80-10.10.20.84",
+        "timeOut": 1,
+        "protocolOrder": "ssh,telnet",
+        "preferredMngmtIPMethod": "None"
+    }
+]

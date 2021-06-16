@@ -1,0 +1,55 @@
+{
+  "response": [
+    {
+      "writeCommunity": "NO!$DATA!$",
+      "description": "SNMP RW",
+      "comments": null,
+      "credentialType": null,
+      "instanceTenantId": "5f94b901d5a01000c622fbe4",
+      "instanceUuid": "60238bad-35e5-4368-ae51-45c46d73c7d0",
+      "id": "60238bad-35e5-4368-ae51-45c46d73c7d0"
+    }
+  ],
+  "version": "1.0"
+}
+
+
+# Risposta ottenuta dopo il primo check sul taskId restituito dall'endpoint
+{
+  "version": 1622488064990,
+  "data": "108",
+  "startTime": 1622488064832,
+  "progress": "108",
+  "lastUpdate": 1622488064990,
+  "rootId": "c2cb04c8-83d1-422d-95b5-b86692b1b2ea",
+  "serviceType": "Discovery Service",
+  "isError": false,
+  "instanceTenantId": "5f94b901d5a01000c622fbe4",
+  "id": "c2cb04c8-83d1-422d-95b5-b86692b1b2ea"
+}
+
+# Risposta ottenuta dopo il secondo check sul taskId restituito dall'endpoint
+# Il task è stato completato poichè è stata aggiunta la chiave "endtime"
+{
+  "endTime": 1622488087551,
+  "version": 1622488064990,
+  "data": "{\"discoveryId\":\"108\",\"note\":\"For further details on the discovery job use discoveryId and jobTaskId.\",\"jobTaskId\":\"1622488075001\",\"status\":\"Success\"}",
+  "startTime": 1622488064832,
+  "progress": "108",
+  "lastUpdate": 1622488064990,
+  "rootId": "c2cb04c8-83d1-422d-95b5-b86692b1b2ea",
+  "serviceType": "Discovery Service",
+  "isError": false,
+  "instanceTenantId": "5f94b901d5a01000c622fbe4",
+  "id": "c2cb04c8-83d1-422d-95b5-b86692b1b2ea"
+}
+
+# Output dello script alla sua conclusione
+# L'output dei singoli dispositivi identificati è nella cartella '108'
+Discovery 108 found 5 devices
+leaf1.abc.inc was reachable
+leaf2.abc.inc was reachable
+host2.lab.devnetsandbox.local was reachable
+spine1.abc.inc was reachable
+host1.lab.devnetsandbox.local was reachable
+stefanopilla@Stefanos-MacBook-Pro-2 Coding % 
