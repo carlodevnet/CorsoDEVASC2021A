@@ -1,0 +1,10 @@
+#!/bin/bash
+echo -n "Enter Your Name: "
+read userName
+echo "Your name is $userName."
+
+# Run with source user-input.sh 
+# chmod a+x user-input.sh
+# mv user-input.sh user-input
+# ./user-input
+
