@@ -1,0 +1,9 @@
+---
+- name: Install Puppet Server
+  hosts: puppet_servers
+  gather_facts: false
+  become: true
+  tasks:
+    - import_role:
+       name: puppet_server
+       

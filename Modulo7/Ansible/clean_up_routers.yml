@@ -1,0 +1,29 @@
+---
+- name: "PLAY 1: Clean Up configuration"
+  hosts: ios_routers
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: "TASK 1: Clean Up configuration"
+      ios_config:
+          lines:
+            - ""
+          parents: "no interface {{ item }}"
+      with_items:
+        - Loopback0
+        - Loopback1
+
+    - name: "TASK 2: Clean Up IP Helper Address"
+      ios_config:
+        lines:
+          - no ip helper-address 192.168.255.100
+          - no ip helper-address 192.168.255.101
+        parents: "{{ item }}"
+      with_items:
+        - interface GigabitEthernet0/0
+        - interface GigabitEthernet0/1  
+    
+    - name: "TASK 3: Removing ACL"
+      ios_config:
+        lines:
+          - no ip access-list extended TEST-ACL

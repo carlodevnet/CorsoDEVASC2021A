@@ -1,0 +1,16 @@
+---
+- name: Creating Directories
+  shell: | 
+    cd /etc/puppetlabs/code/modules/
+    mkdir -p lamp/manifests
+    touch lamp/manifests/init.pp
+
+- name: Copy manifest for lamp instal
+  copy:
+    src: init.pp
+    dest: /etc/puppetlabs/code/modules/lamp/manifests/init.pp
+
+- name: Copy the Main Manifest file
+  copy: 
+    src: site.pp
+    dest: /etc/puppetlabs/code/environments/production/manifests/site.pp 

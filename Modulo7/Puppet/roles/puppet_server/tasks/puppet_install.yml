@@ -1,0 +1,55 @@
+---
+- name: Removing Existing installs of Puppet Server
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - puppetserver
+  become: yes
+
+- name: Cleaning up config files and certificates
+  shell: |     
+    sudo rm -rf /var/run/puppetlabs
+    sudo rm -rf /etc/puppetlabs
+    sudo rm -rf /opt/puppetlabs
+    sudo rm -rf /home/$(whoami)/.puppetlabs/
+  ignore_errors: true
+
+- name: Set the machine hostname to "puppetserver"
+  hostname:
+    name: puppetserver
+
+- name: Rebooting the server and wait for it to come back up
+  reboot:
+
+- name: Adding PuppetLabs repository
+  apt:
+    deb: https://apt.puppet.com/puppet7-release-focal.deb
+  become: yes
+
+- name: Install puppetserver
+  apt:
+    name: puppetserver
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: Start puppetserver
+  systemd:
+    name: puppetserver
+    state: started
+
+- name: Enable puppetserver to start on boot
+  systemd:
+    name: puppetserver
+    enabled: yes
+
+

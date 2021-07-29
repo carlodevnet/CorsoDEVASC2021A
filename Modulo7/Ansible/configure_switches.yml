@@ -1,0 +1,49 @@
+---
+- name: "PLAY 1: Verify configuration and create Loopback interfaces"
+  hosts: ios_switches
+  gather_facts: no
+  connection: network_cli
+  vars_files:
+    - ./vars/vlans.yml
+  tasks:
+    - name: "TASK 1: Verify show ip int brief, show version and show running"
+      ios_command:
+        commands:
+          - "show ip int brief"
+          - "show version"
+          - "show running"
+          - "show vlan"
+      register: cli_output
+
+    - name: "TASK 2: Create the output folder..."
+      file:
+        path: "outputs"
+        state: directory
+      run_once: true
+
+    - name: "TASK 2.1: Save the Show ip int brief output"
+      copy:
+        content: "{{ cli_output.stdout[0] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_ip_int_brief.txt"
+    
+    - name: "TASK 2.2: Save the show version output"
+      copy:
+        content: "{{ cli_output.stdout[1] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_version.txt"
+    
+    - name: "TASK 2.3: Save the show running output "
+      copy:
+        content: "{{ cli_output.stdout[2] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_running.txt"
+
+    - name: "TASK 2.4: Save the show vlan output "
+      copy:
+        content: "{{ cli_output.stdout[3] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_vlans.txt"
+
+    - name: "TASK 4: Configure VLANs based on VLAN list"
+      ios_config:
+        lines:
+          - name {{ item.name }}
+        parents: vlan {{ item.id }}
+      with_items: "{{ vlans }}"

@@ -1,0 +1,8 @@
+---
+vlans:
+  - name: data
+    id: 10
+  - name: voice
+    id: 20
+  - name: security
+    id: 30

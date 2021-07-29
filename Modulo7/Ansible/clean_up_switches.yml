@@ -1,0 +1,13 @@
+---
+- name: "PLAY 1: Clean Up Switches configuration"
+  hosts: ios_switches
+  gather_facts: no
+  connection: network_cli
+  vars_files:
+    - ./vars/vlans.yml
+  tasks:
+    - name: "TASK 1: Clean Up VLANs.."
+      ios_config:
+        commands:
+          - no vlan {{ item.id }}
+      with_items: "{{ vlans }}"

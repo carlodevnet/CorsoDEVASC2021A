@@ -1,0 +1,9 @@
+---
+- name: Install Puppet Agent
+  hosts: puppet_agent
+  gather_facts: false
+  become: true
+  tasks:
+    - import_role:
+       name: puppet_agent
+       

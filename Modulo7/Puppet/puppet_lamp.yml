@@ -1,0 +1,16 @@
+---
+- name: Install LAMP Module on Puppet Master
+  hosts: puppet_servers
+  gather_facts: false
+  become: true
+  tasks:
+    - import_role:
+       name: install_lamp
+
+- name: Install LAMP on the agent
+  hosts: puppet_agent
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Installing LAMP on the agent
+      shell: /opt/puppetlabs/bin/puppet agent --test

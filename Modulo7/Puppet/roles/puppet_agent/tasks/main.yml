@@ -1,0 +1,3 @@
+---
+- import_tasks: puppet_install.yml
+- import_tasks: puppet_configure.yml

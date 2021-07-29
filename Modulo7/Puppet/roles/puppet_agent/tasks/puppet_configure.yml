@@ -1,0 +1,27 @@
+- name: "Remove existing hostnames in /etc/hosts"
+  blockinfile: 
+    path: /etc/hosts
+    insertbefore: '127.0.0.1 localhost' 
+    block: ""
+
+- name: "Update /etc/hosts with the correct IP/hostnames"
+  blockinfile: 
+    path: /etc/hosts
+    insertafter: '^(.*)127.0.0.1(.*)$' 
+    block: |
+      127.0.0.1 localhost
+      10.99.99.210 puppet puppetserver
+      10.99.99.211 puppetclient
+      
+- name: Configuring Puppet-Agent 
+  shell: |
+    /opt/puppetlabs/bin/puppet config set server puppetserver --section main
+    /opt/puppetlabs/bin/puppet config set certname puppetclient --section main
+    /opt/puppetlabs/bin/puppet config set runinterval 15m --section main
+    /opt/puppetlabs/bin/puppet config set environment production --section server
+
+- name: Generating a new CSR Request 
+  shell: |
+    /opt/puppetlabs/bin/puppet agent --test 
+  ignore_errors: true
+  

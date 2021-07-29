@@ -1,0 +1,74 @@
+---
+- name: "PLAY 1: Verify configuration and create Loopback interfaces"
+  hosts: ios_routers
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: "TASK 1: Verify show ip int brief, show version and show running"
+      ios_command:
+        commands:
+          - "show ip int brief"
+          - "show version"
+          - "show running"
+      register: cli_output
+
+    - name: "TASK 2: Create the output folder..."
+      file:
+        path: "outputs"
+        state: directory
+      run_once: true
+
+    - name: "TASK 2.1: Save the Show ip int brief output"
+      copy:
+        content: "{{ cli_output.stdout[0] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_ip_int_brief.txt"
+    
+    - name: "TASK 2.2: Save the show version output"
+      copy:
+        content: "{{ cli_output.stdout[1] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_version.txt"
+    
+    - name: "TASK 2.3: Save the show running output "
+      copy:
+        content: "{{ cli_output.stdout[2] }}"
+        dest: "outputs/{{ inventory_hostname }}_show_running.txt"
+    
+    - name: "TASK 4: Configure Loopback0 Interface"
+      ios_config:
+        lines:
+          - description Configured via Ansible
+          - ip address {{ ip_int_l0 }} {{255.255.255.128}}
+        parents: interface Loopback0
+   
+    - name: "TASK 5: Configure Loopback1 Interface"
+      ios_config:
+        lines:
+          - description Configured via Ansible
+          - ip address {{ ip_int_l1 }} 255.255.255.128
+        parents: interface Loopback1
+    
+    - name: "TASK 6: Configure IP Helper Address"
+      ios_config:
+        lines:
+          - ip helper-address 192.168.255.100
+          - ip helper-address 192.168.255.101
+        parents: "{{ item }}"
+      with_items:
+        - interface GigabitEthernet0/0
+        - interface GigabitEthernet0/1
+        - interface Loopback0
+        - interface Loopback1
+
+
+    - name: "TASK 7: Configure ACL Standard on all the interfaces"
+      ios_config:  
+        lines:
+        - permit ip host 192.168.1.1 any log
+        - permit ip host 192.168.2.1 any log
+        - permit ip host 192.168.3.1 any log
+        - permit ip host 192.168.4.1 any log
+        - permit ip host 192.168.5.1 any log
+        parents: ip access-list extended TEST-ACL
+        before: no ip access-list extended TEST-ACL
+        match: exact
+          

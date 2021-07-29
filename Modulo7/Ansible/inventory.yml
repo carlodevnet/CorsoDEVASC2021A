@@ -1,0 +1,26 @@
+---
+all:
+  children:
+    routers:
+      children:
+        ios_routers:
+          10.99.99.240:
+          10.99.99.241:
+        ios_switches:
+          10.99.99.244:
+          2.2.2.2:
+        nxos_switches:
+          1.1.1.1:
+          2.2.2.2:
+        iosxr_routers:
+          3.3.3.3
+          4.4.4.4
+    servers:
+      children:
+        web:
+          webserver1.local
+          webserver2.local
+        fileserver:
+          fileserver1.local
+          fileserver2.local
+        

@@ -1,0 +1,50 @@
+---
+- name: Removing puppet-agent
+  apt:
+    name: puppet-agent
+    state: absent
+  become: yes
+
+- name: Cleaning up config files and certificates from old installation
+  shell: | 
+    sudo rm -rf /var/run/puppetlabs
+    sudo rm -rf /etc/puppetlabs
+    sudo rm -rf /opt/puppetlabs
+    sudo rm -rf /home/$(whoami)/.puppetlabs/
+  ignore_errors: true
+
+- name: Set the machine hostname to "puppetclient"
+  hostname:
+    name: puppetclient
+
+- name: Rebooting the server and wait for it to come back up
+  reboot:
+
+- name: Install Puppet-server from .deb package from the internet
+  apt:
+    deb: https://apt.puppet.com/puppet7-release-focal.deb
+
+- name: Install puppet-agent
+  apt:
+    name: puppet-agent
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: Start puppet-agent
+  systemd:
+    name: puppet
+    state: started
+
+- name: Enable puppet-agent to start on boot
+  systemd:
+    name: puppet
+    enabled: yes
