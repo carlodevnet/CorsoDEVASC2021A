@@ -1,0 +1,8 @@
+<interfaces xmlns="http://openconfig.net/yang/interfaces">
+  <interface>
+    <state>
+      <last-change/>
+    </state>
+    <name/>
+  </interface>
+</interfaces>
