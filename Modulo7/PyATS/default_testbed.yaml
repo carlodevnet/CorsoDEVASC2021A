@@ -1,0 +1,63 @@
+testbed:
+  name: DevNet_Lab
+
+devices:
+  R1:
+    os: iosxe
+    type: router
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      console:
+        ip: 10.99.99.232
+        protocol: ssh
+        port: 22
+  R2:
+    os: iosxe
+    type: router
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      console:
+        ip: 10.99.99.234
+        protocol: ssh
+        port: 22
+
+  SW01:
+    alias: SW01
+    os: iosxe
+    type: switch
+    credentials:
+      default:
+        username: cisco
+        password: cisco
+    connections:
+      console:
+        ip: 10.99.99.233
+        protocol: ssh
+        port: 22
+
+topology:
+  R1:
+    interfaces:
+      GigabitEthernet0/0:
+        ipv4: 10.99.99.232
+        link: flat
+        type: ethernet
+  R2:
+    interfaces:
+      GigabitEthernet0/0:
+        ipv4: 10.99.99.234
+        link: flat
+        type: ethernet
+
+  SW01:
+    interfaces:
+      GigabitEthernet0/0:
+        ipv4: 10.99.99.233
+        link: flat
+        type: ethernet
