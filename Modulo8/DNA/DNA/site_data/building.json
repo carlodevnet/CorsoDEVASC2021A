@@ -1,0 +1,12 @@
+{
+    "type": "Building",
+    "site": {
+        "building": {
+            "name": "Lab",
+            "address": "Via del Test",
+            "parentName": "Global/Italy",
+            "latitude": "41.9028",
+            "longitude": "12.4964"
+        }
+    }
+}

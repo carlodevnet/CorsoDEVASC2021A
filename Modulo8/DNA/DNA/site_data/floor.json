@@ -1,0 +1,13 @@
+{
+    "type": "floor",
+    "site": {
+        "floor": {
+            "name": "Floor2",
+            "parentName": "Global/Italy/Lab",
+            "rfModel": "Cubes And Walled Offices",
+            "width": "50",
+            "length": "60",
+            "height": "10"
+        }
+    }
+}
