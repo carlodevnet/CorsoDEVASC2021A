@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "2f7c742e-0df3-4e53-9741-194fe870ecc4",
+		"name": "1 - Corso DevNET - Deck Of Cards",
+		"description": "The Deck of Cards API provides a programmatic way to make requests for cards in a standard deck or to shuffle cards in a deck. Multiple decks can be shuffled or drawn from. See https://deckofcardsapi.com for more information. No authorization is needed.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Shuffle the Cards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"deck_id\", jsonData['deck_id']);",
+							"postman.setEnvironmentVariable(\"shuffled\", jsonData['shuffled']);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+					"protocol": "https",
+					"host": [
+						"deckofcardsapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"deck",
+						"new",
+						"shuffle",
+						""
+					],
+					"query": [
+						{
+							"key": "deck_count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Draw three cards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"first_card\", jsonData['cards'][0]['code']);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://deckofcardsapi.com/api/deck/{{deck_id}}/draw/?count=3",
+					"protocol": "https",
+					"host": [
+						"deckofcardsapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"deck",
+						"{{deck_id}}",
+						"draw",
+						""
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "3"
+						}
+					]
+				},
+				"description": "deckofcardsapi.com "
+			},
+			"response": []
+		},
+		{
+			"name": "3. Reshuffle the Cards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+					"protocol": "https",
+					"host": [
+						"deckofcardsapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"deck",
+						"new",
+						"shuffle",
+						""
+					],
+					"query": [
+						{
+							"key": "deck_count",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Shuffle the cards in a single deck"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Partial Deck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://deckofcardsapi.com/api/deck/{{deck_id}}/shuffle/?cards=AS,2S,KS,AD,2D,KD,AC,2C,KC,AH,2H,KH",
+					"protocol": "https",
+					"host": [
+						"deckofcardsapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"deck",
+						"{{deck_id}}",
+						"shuffle",
+						""
+					],
+					"query": [
+						{
+							"key": "cards",
+							"value": "AS,2S,KS,AD,2D,KD,AC,2C,KC,AH,2H,KH"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

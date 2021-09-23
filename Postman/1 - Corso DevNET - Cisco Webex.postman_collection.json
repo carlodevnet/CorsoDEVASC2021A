@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "7dd997c5-6fd4-48e9-bee9-5cee733d00da",
+		"name": "1 - Corso DevNET - Cisco Webex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"webex_team_id\", jsonData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"DevNet Course Team\"\n}"
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/teams",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the list of Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"for (var teamId in jsonData) {",
+							"    if (jsonData['items'][0]['name'] == \"DevNet Course Team\"){",
+							"        postman.setEnvironmentVariable(\"webex_team_id\", jsonData['items'][0]['id'])",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/teams",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"teams"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Team",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/teams/{{webex_team_id}}",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"teams",
+						"{{webex_team_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Room",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/rooms/{{webex_teams_room_id}}",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"rooms",
+						"{{webex_teams_room_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Rooms of a specific Webex Team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"for (var teamId in jsonData) {",
+							"    if (jsonData['items'][0]['title'] == \"DevNet War Room\"){",
+							"        postman.setEnvironmentVariable(\"webex_teams_room_id\", jsonData['items'][0]['id'])",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/rooms?teamId={{webex_team_id}}",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"rooms"
+					],
+					"query": [
+						{
+							"key": "teamId",
+							"value": "{{webex_team_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of ALL Rooms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"for (var teamId in jsonData) {",
+							"    if (jsonData['items'][0]['title'] == \"DevNet War Room\"){",
+							"        postman.setEnvironmentVariable(\"webex_teams_room_id\", jsonData['items'][0]['id'])",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2"
+					}
+				],
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/rooms",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Room",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"webex_teams_room_id\", jsonData.id)",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"DevNet War Room\",\n\t\"teamId\": \"{{webex_team_id}}\"\n}"
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/rooms",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a message in a Room",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer MWQzZWVhYzYtZjkxNy00NTlkLTkzN2EtOTlmYjU2ZmU5N2I0N2UyZmMyMTAtMTNm_PF84_3b44a0b5-0ed0-4afb-b5ec-237b18e618d2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"Test Message from Postman!\",\n\t\"roomId\": \"{{webex_teams_room_id}}\"\n}"
+				},
+				"url": {
+					"raw": "https://{{webex_teams_basic_url}}/v1/messages",
+					"protocol": "https",
+					"host": [
+						"{{webex_teams_basic_url}}"
+					],
+					"path": [
+						"v1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

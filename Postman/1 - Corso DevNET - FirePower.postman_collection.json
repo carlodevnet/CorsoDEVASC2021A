@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "73ba6e2b-f735-4ba7-a6c6-c162257765ab",
+		"name": "1 - Corso DevNET - FirePower",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var authToken = postman.getResponseHeader(\"X-auth-access-token\")",
+							"var refreshToken = postman.getResponseHeader(\"X-auth-refresh-token\")",
+							"postman.setEnvironmentVariable(\"fmc_token\", authToken)",
+							"postman.setEnvironmentVariable(\"fmc_refresh_token\", refreshToken)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{fmc_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{fmc_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_platform/v1/auth/generatetoken",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_platform",
+						"v1",
+						"auth",
+						"generatetoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var headerName = postman.getResponseHeader(\"X-auth-access-token\")",
+							"postman.setEnvironmentVariable(\"fmc_token\", headerName)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{fmc_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{fmc_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-access-token",
+						"value": "{{fmc_token}}",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-refresh-token",
+						"value": "{{fmc_refresh_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_platform/v1/auth/refreshtoken",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_platform",
+						"v1",
+						"auth",
+						"refreshtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Networks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-auth-access-token",
+						"value": "{{fmc_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/networks",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_config",
+						"v1",
+						"domain",
+						"e276abec-e0f2-11e3-8169-6d9ed49b625f",
+						"object",
+						"networks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Apps",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-auth-access-token",
+						"type": "text",
+						"value": "{{fmc_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/object/applications",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_config",
+						"v1",
+						"domain",
+						"e276abec-e0f2-11e3-8169-6d9ed49b625f",
+						"object",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Server Version",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-auth-access-token",
+						"type": "text",
+						"value": "{{fmc_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_platform/v1/info/serverversion",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_platform",
+						"v1",
+						"info",
+						"serverversion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Policies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-auth-access-token",
+						"type": "text",
+						"value": "{{fmc_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{fmc_url}}/api/fmc_config/v1/domain/e276abec-e0f2-11e3-8169-6d9ed49b625f/policy/accesspolicies?limit=1000",
+					"protocol": "https",
+					"host": [
+						"{{fmc_url}}"
+					],
+					"path": [
+						"api",
+						"fmc_config",
+						"v1",
+						"domain",
+						"e276abec-e0f2-11e3-8169-6d9ed49b625f",
+						"policy",
+						"accesspolicies"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

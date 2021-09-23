@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "b166f659-66d0-4ad6-a33a-885c288efa96",
+		"name": "1 - Corso DevNET - Cisco UCS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Get REST Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (request.url.includes(\"getRESTKey\")) {",
+							"    postman.setEnvironmentVariable(\"ucsd_key\", responseBody.replace(/\"/g, \"\"))",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ucsd_host}}/app/api/rest?opName=getRESTKey&user={{ucsd_username}}&password={{ucsd_password}}",
+					"protocol": "https",
+					"host": [
+						"{{ucsd_host}}"
+					],
+					"path": [
+						"app",
+						"api",
+						"rest"
+					],
+					"query": [
+						{
+							"key": "opName",
+							"value": "getRESTKey"
+						},
+						{
+							"key": "user",
+							"value": "{{ucsd_username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{ucsd_password}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Cloupia-Request-Key",
+						"value": "{{ucsd_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{ucsd_host}}/cloupia/api-v2/user",
+					"protocol": "https",
+					"host": [
+						"{{ucsd_host}}"
+					],
+					"path": [
+						"cloupia",
+						"api-v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Cloupia-Request-Key",
+						"value": "{{ucsd_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{ucsd_host}}/cloupia/api-v2/user/{{ucsd_user}}",
+					"protocol": "https",
+					"host": [
+						"{{ucsd_host}}"
+					],
+					"path": [
+						"cloupia",
+						"api-v2",
+						"user",
+						"{{ucsd_user}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Cloupia-Request-Key",
+						"value": "{{ucsd_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<cuicOperationRequest>\n<payload>\n<![CDATA[\n<AddUserConfig>\n<userType>AdminAllPolicy</userType>\n\n\n<!-- Accepts value from the list: userGroupByType-->\n<userGroup></userGroup>\n\n<mspOrganization></mspOrganization>\n\n<loginName>{{ucsd_user}}</loginName>\n\n\n<!-- Accepts value from the list: password-->\n<password>dGVzdHVzZXI=</password>\n\n\n<!-- Accepts value from the list: password-->\n<confirmPassword>dGVzdHVzZXI=</confirmPassword>\n\n<userContactEmail>test@testuser.it</userContactEmail>\n\n<firstName></firstName>\n\n<lastName></lastName>\n\n<phone></phone>\n\n<address></address>\n\n\n<!-- Accepts value from the list: locale-->\n<locale>en_US</locale>\n\n\n<!-- Accepts value from the list: Boolean-->\n<classicUIEnabled>false</classicUIEnabled>\n\n</AddUserConfig>\n\n]]>\n</payload>\n</cuicOperationRequest>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ucsd_host}}/cloupia/api-v2/user",
+					"protocol": "https",
+					"host": [
+						"{{ucsd_host}}"
+					],
+					"path": [
+						"cloupia",
+						"api-v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Cloupia-Request-Key",
+						"type": "text",
+						"value": "{{ucsd_key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<cuicOperationRequest>\n<operationType>DELETE_USER</operationType>\n<payload>\n<![CDATA[\n<DeleteUserConfig>\n<loginName>{{ucsd_user}}</loginName>\n\n</DeleteUserConfig>\n\n]]>\n</payload>\n</cuicOperationRequest>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ucsd_host}}/cloupia/api-v2/user",
+					"protocol": "https",
+					"host": [
+						"{{ucsd_host}}"
+					],
+					"path": [
+						"cloupia",
+						"api-v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

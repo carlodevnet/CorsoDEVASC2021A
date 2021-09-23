@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "e6cd1976-f4bc-4642-938b-e7264151c065",
+		"name": "1 - Corso DevNet - Cisco CUCM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get List of Users",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{cucm_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{cucm_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{cucm_basic_url}}/cucm-uds/users",
+					"protocol": "https",
+					"host": [
+						"{{cucm_basic_url}}"
+					],
+					"path": [
+						"cucm-uds",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Servers in the cluster",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{cucm_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{cucm_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/xml"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://{{cucm_basic_url}}/cucm-uds/servers",
+					"protocol": "https",
+					"host": [
+						"{{cucm_basic_url}}"
+					],
+					"path": [
+						"cucm-uds",
+						"servers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Devices of a specific user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{cucm_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{cucm_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/xml"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://{{cucm_basic_url}}/cucm-uds/user/fftest1/devices",
+					"protocol": "https",
+					"host": [
+						"{{cucm_basic_url}}"
+					],
+					"path": [
+						"cucm-uds",
+						"user",
+						"fftest1",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of speed Dials of a specific user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{cucm_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{cucm_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/xml"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "https://{{cucm_basic_url}}/cucm-uds/user/fftest1/speedDials",
+					"protocol": "https",
+					"host": [
+						"{{cucm_basic_url}}"
+					],
+					"path": [
+						"cucm-uds",
+						"user",
+						"fftest1",
+						"speedDials"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

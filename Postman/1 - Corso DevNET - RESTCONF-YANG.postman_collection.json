@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "878820a7-59b3-44b5-9de0-f0907ffba9f9",
+		"name": "1 - Corso DevNET - RESTCONF/YANG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IETF - Get All Interfaces from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces/",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IETF - Get All Interfaces from the Router (IOS-XR)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{router1}}:{{port}}/restconf/data/ietf-interfaces:interfaces/",
+					"protocol": "https",
+					"host": [
+						"{{router1}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cisco - Get All Interfaces from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-interfaces-oper:interfaces/",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-interfaces-oper:interfaces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Capabilities",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/yang-data+json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/yang-data+json"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/netconf-state/capabilities",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"netconf-state",
+						"capabilities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IETF - Get One Interface details from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces/interface=GigabitEthernet3",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						"interface=GigabitEthernet3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cisco - Get One Interface details from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-interfaces-oper:interfaces/interface=GigabitEthernet3",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-interfaces-oper:interfaces",
+						"interface=GigabitEthernet3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cisco - Get One Interface name from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=3/name",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-native:native",
+						"interface",
+						"GigabitEthernet=3",
+						"name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IETF - Configure a new Loopback Inteface",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true,
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ietf-interfaces:interface\": {\n        \"name\": \"Loopback100\",\n        \"description\": \"Configured by RESTCONF\",\n        \"type\": \"iana-if-type:softwareLoopback\",\n        \"enabled\": true,\n        \"ietf-ip:ipv4\": {\n            \"address\": [\n                {\n                    \"ip\": \"100.100.100.254\",\n                    \"netmask\": \"255.255.255.0\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IETF - Delete Interface from the Router",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/yang-data+json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/yang-data+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces/interface=Loopback100",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"restconf",
+						"data",
+						"ietf-interfaces:interfaces",
+						"interface=Loopback100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Gather info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ietf-restconf:restconf\": {\n        \"data\": {},\n        \"operations\": {},\n        \"yang-library-version\": \"2016-06-21\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{host}}/restconf",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"restconf"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "10.99.99.231"
+		},
+		{
+			"key": "port",
+			"value": "443"
+		},
+		{
+			"key": "username",
+			"value": "cisco"
+		},
+		{
+			"key": "password",
+			"value": "cisco"
+		}
+	]
+}

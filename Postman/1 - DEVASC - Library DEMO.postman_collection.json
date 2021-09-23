@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "badec4d9-c7fe-4b86-80d1-2d02422ef412",
+		"name": "1 - DEVASC - Library DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GET Books - Not Auth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://library.demo.local/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. GET Books - Not Auth with Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://library.demo.local/api/v1/books?includeISBN=True",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					],
+					"query": [
+						{
+							"key": "includeISBN",
+							"value": "True"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. GET Books - Not Auth with Multiple Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://library.demo.local/api/v1/books?includeISBN=True&sortBy=author",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					],
+					"query": [
+						{
+							"key": "includeISBN",
+							"value": "True"
+						},
+						{
+							"key": "sortBy",
+							"value": "author"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. POST - Basic Authentication",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Cisco123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cisco",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://library.demo.local/api/v1/loginViaBasic",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"loginViaBasic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. POST - Auth via JSON",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"cisco\",\n  \"password\": \"Cisco123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://library.demo.local/api/v1/loginViaJSON",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"loginViaJSON"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. POST - Create a Book",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "cisco|TAB0w0aqtUaDfQeY3qKdSuwWTHnOURjTchQ7P74J_CE",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 4,\n  \"title\": \"DevNet Associate\",\n  \"author\": \"NetSchool\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://library.demo.local/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. DELETE - Delete a Book",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "cisco|TAB0w0aqtUaDfQeY3qKdSuwWTHnOURjTchQ7P74J_CE",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://library.demo.local/api/v1/books/4",
+					"protocol": "http",
+					"host": [
+						"library",
+						"demo",
+						"local"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

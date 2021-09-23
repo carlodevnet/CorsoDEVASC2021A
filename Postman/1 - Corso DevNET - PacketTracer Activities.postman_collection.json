@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "a75e94f7-fb1d-4262-85bf-6f755398fd6b",
+		"name": "1 - Corso DevNET - PacketTracer Activities",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST New Service Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\": \"cisco\",\n\"password\": \"cisco123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:58000/api/v1/ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58000",
+					"path": [
+						"api",
+						"v1",
+						"ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Network Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "NC-148-70c49be46619483e8588-nbi",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:58000/api/v1/network-device",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58000",
+					"path": [
+						"api",
+						"v1",
+						"network-device"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

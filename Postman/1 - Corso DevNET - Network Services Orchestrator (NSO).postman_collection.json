@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "a2595662-b1e8-4ef6-b184-8aa5876f3308",
+		"name": "1 - Corso DevNET - Network Services Orchestrator (NSO)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Full Config",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{nso_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{nso_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{nso_baseurl}}:8080/api/running/devices/device/c0/config?deep",
+					"protocol": "http",
+					"host": [
+						"{{nso_baseurl}}"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"running",
+						"devices",
+						"device",
+						"c0",
+						"config"
+					],
+					"query": [
+						{
+							"key": "deep",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

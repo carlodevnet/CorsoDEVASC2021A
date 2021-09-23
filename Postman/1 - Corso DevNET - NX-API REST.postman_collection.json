@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "f95e50a3-daff-4886-922d-b47744e80c85",
+		"name": "1 - Corso DevNET - NX-API REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NX-API REST Login Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\",jsonData.imdata[0].aaaLogin.attributes.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aaaUser\":{\n\t\t\"attributes\":{\n\t\t\t\"name\":\"{{username}}\",\n\t\t\t\"pwd\":\"{{password}}\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://{{nexus_1}}:{{port}}/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"{{nexus_1}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				},
+				"description": "Request to get the token"
+			},
+			"response": []
+		},
+		{
+			"name": "NX-API REST ALL Vlan (Class)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{nexus_1}}:{{port}}/api/nodes/class/l2BD.json?",
+					"protocol": "https",
+					"host": [
+						"{{nexus_1}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"nodes",
+						"class",
+						"l2BD.json"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NX-API REST Get Interface Info Eth1/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{nexus_1}}:{{port}}/api/node/mo/sys/intf/phys-[eth1/1].json",
+					"protocol": "https",
+					"host": [
+						"{{nexus_1}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"sys",
+						"intf",
+						"phys-[eth1",
+						"1].json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NX-API REST Update Interface description ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"l1PhysIf\":{\n\t\t\"attributes\":{\n\t\t\t\"descr\":\"Configured via Postman using NXAPI RESTCONF!\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{nexus_1}}:{{port}}/api/node/mo/sys/intf/phys-[eth1/1].json",
+					"protocol": "https",
+					"host": [
+						"{{nexus_1}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"sys",
+						"intf",
+						"phys-[eth1",
+						"1].json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	}
+}

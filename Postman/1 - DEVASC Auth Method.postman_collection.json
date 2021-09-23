@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "10449c6a-2a63-4abf-a2b4-a076481dc249",
+		"name": "1 - DEVASC Auth Method",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "postman-echo.com/basic-auth",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"basic-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Key",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "6bec40cf957de430a6f1f2baa056b99a4fac9ea0",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-Cisco-Meraki-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{meraki_base_url}}/organizations",
+					"host": [
+						"{{meraki_base_url}}"
+					],
+					"path": [
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bearer Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ODdiOWU3OTAtODkzMS00NDEyLWEwMjMtMzg3ZmY0MTllODlmNDg2YTI2MTgtYjAx_PF84_consumer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://webexapis.com/v1/organizations",
+					"protocol": "https",
+					"host": [
+						"webexapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"organizations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

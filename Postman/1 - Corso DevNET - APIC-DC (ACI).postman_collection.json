@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "d69c733b-730c-4d6e-afcb-3c4267fcb9f5",
+		"name": "1 - Corso DevNET - APIC-DC (ACI)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Authentication Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"apic_token\", jsonData.imdata[0].aaaLogin.attributes.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aaaUser\":{\n\t\t\"attributes\":{\n\t\t\t\"name\": \"{{apic_username}}\",\n\t\t\t\"pwd\": \"{{apic_password}}\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/aaaLogin.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"aaaLogin.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Tenants",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{apic_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/class/fvTenant.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"class",
+						"fvTenant.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Applications",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{apic_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/class/fvAp.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"class",
+						"fvAp.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applications Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/node/mo/uni/tn-Heroes/ap-Save_The_Planet.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-Heroes",
+						"ap-Save_The_Planet.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Filtered Tenants",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/class/fvTenant.json?query-target-filter=eq(fvTenant.name,\"Heroes\")&rsp-subtree=full&rsp-prop-include=config-only",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"class",
+						"fvTenant.json"
+					],
+					"query": [
+						{
+							"key": "query-target-filter",
+							"value": "eq(fvTenant.name,\"Heroes\")"
+						},
+						{
+							"key": "rsp-subtree",
+							"value": "full"
+						},
+						{
+							"key": "rsp-prop-include",
+							"value": "config-only"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set APN Description",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fvAp\":{\n\t\t\"attributes\":{\n\t\t\t\"descr\": \"\",\n\t\t\t\"dn\": \"uni/tn-Heroes/ap-Save_The_Planet\"\n\t\t}\n\t}\n}\n\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/node/mo/uni/tn-Heroes/ap-Save_The_Planet.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-Heroes",
+						"ap-Save_The_Planet.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Tenant Villains",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"fvTenant\":{\"attributes\":{\"dn\":\"uni/tn-Villains\",\"name\":\"Villains\",\"rn\":\"tn-Villains\",\"status\":\"created\"},\"children\":[{\"fvCtx\":{\"attributes\":{\"dn\":\"uni/tn-Villains/ctx-Villains_Only\",\"name\":\"Villains_Only\",\"rn\":\"ctx-Villains_Only\",\"status\":\"created\"},\"children\":[]}}]}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/node/mo/uni/tn-Villains.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-Villains.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Policy Elements",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fvTenant\": {\n        \"attributes\": {\n            \"name\": \"Villains\"\n        },\n        \"children\": [\n            {\n                \"vzFilter\": {\n                    \"attributes\": {\n                        \"name\": \"DNS_ZoneTransfer\",\n                        \"status\": \"created\"\n                    },\n                    \"children\": [\n                        {\n                            \"vzEntry\": {\n                                \"attributes\": {\n                                    \"name\": \"tcp-53\",\n                                    \"etherT\": \"ip\",\n                                    \"prot\": \"tcp\",\n                                    \"dFromPort\": \"dns\",\n                                    \"dToPort\": \"dns\",\n                                    \"status\": \"created\"\n                                },\n                                \"children\": []\n                            }\n                        }\n                    ]\n                }\n            },\n            {\n                \"vzBrCP\": {\n                    \"attributes\": {\n                        \"name\": \"DNS\",\n                        \"status\": \"modified\"\n                    },\n                    \"children\": [\n                        {\n                            \"vzSubj\": {\n                                \"attributes\": {\n                                    \"name\": \"DNS_ZoneTransfer\",\n                                    \"status\": \"created\"\n                                },\n                                \"children\": [\n                                    {\n                                        \"vzRsSubjFiltAtt\": {\n                                            \"attributes\": {\n                                                \"status\": \"created,modified\",\n                                                \"tnVzFilterName\": \"DNS_ZoneTransfer\"\n                                            },\n                                            \"children\": []\n                                        }\n                                    }\n                                ]\n                            }\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/mo/uni/tn-Villains.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"mo",
+						"uni",
+						"tn-Villains.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Policy Elements",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vzBrCP\": {\n        \"attributes\": {\n            \"name\": \"DNS\",\n            \"status\": \"deleted\"\n        }\n    }\n}\n                    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/node/mo/uni/tn-Villains.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-Villains.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tenant Villains",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"type": "text",
+						"value": "{{apic_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"fvTenant\":{\"attributes\":{\"dn\":\"uni/tn-Villains\",\"status\":\"deleted\"},\"children\":[]}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apic_base_url}}:{{apic_port}}/api/node/mo/uni/tn-Villains.json",
+					"protocol": "https",
+					"host": [
+						"{{apic_base_url}}"
+					],
+					"port": "{{apic_port}}",
+					"path": [
+						"api",
+						"node",
+						"mo",
+						"uni",
+						"tn-Villains.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

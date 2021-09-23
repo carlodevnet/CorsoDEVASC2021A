@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "a63b12c2-158a-4a73-b535-74601b5d8fa8",
+		"name": "1 - Corso DevNET - ASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Monitoring",
+			"item": [
+				{
+					"name": "Get Device Status",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{asa_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{asa_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{asav1}}/api/monitoring/device",
+							"protocol": "https",
+							"host": [
+								"{{asav1}}"
+							],
+							"path": [
+								"api",
+								"monitoring",
+								"device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Connections",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{asa_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{asa_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{asav1}}/api/monitoring/connections",
+							"protocol": "https",
+							"host": [
+								"{{asav1}}"
+							],
+							"path": [
+								"api",
+								"monitoring",
+								"connections"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ASAv Test",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{asa_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{asa_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{asav1}}/api/objects/networkobjects",
+					"protocol": "https",
+					"host": [
+						"{{asav1}}"
+					],
+					"path": [
+						"api",
+						"objects",
+						"networkobjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Interfaces",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{asa_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{asa_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{asav1}}/api/interfaces/physical",
+					"protocol": "https",
+					"host": [
+						"{{asav1}}"
+					],
+					"path": [
+						"api",
+						"interfaces",
+						"physical"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Routes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{asa_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{asa_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{asav1}}/api/routing/static",
+					"protocol": "https",
+					"host": [
+						"{{asav1}}"
+					],
+					"path": [
+						"api",
+						"routing",
+						"static"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "8006be20-bb46-46b4-8685-7ae827b58e30",
+		"name": "1 - Corso DevNET - Unit Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SWAPI People",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response code is 200', function(){",
+							"  pm.response.to.have.status(200);  ",
+							"});",
+							"",
+							"pm.test('Api Response Speed', function(){",
+							"   pm.expect(pm.response.responseTime).to.be.below(2000); ",
+							"});",
+							"",
+							"pm.test('Must be C-3PO', function(){",
+							"   jsonData = pm.response.json()",
+							"   pm.expect(jsonData).to.have.property(\"name\", \"C-3PO\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.py4e.com/api/people/2/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"py4e",
+						"com"
+					],
+					"path": [
+						"api",
+						"people",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SWAPI Starships",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/starships/9/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"starships",
+						"9",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
